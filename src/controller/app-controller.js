@@ -1,5 +1,7 @@
 import {render, RenderPosition} from "../helpers/render.js";
 
+import {Model} from "../model/model.js";
+
 import {AppView} from "../view/app-view.js";
 
 export class AppController {
@@ -11,7 +13,15 @@ export class AppController {
     this.model = null;
   }
 
-  initiate() {
+  async initiate(url) {
+    this.model = new Model();
+    await this.model.setProducts(url).catch(err => console.log(err));
+
+    if(!this.model.getAllProducts()) {
+      console.log("404");
+      return;
+    }
+
     this.view = new AppView(this.parent);
     render(this.container, this.view, RenderPosition.AFTER);
   }

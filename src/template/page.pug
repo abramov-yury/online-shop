@@ -1,0 +1,27 @@
+include favicon
+include sprite
+include line
+
+doctype html
+
+block variables
+
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    +favicon
+    link(rel="preload" href="fonts/Montserrat-Medium.woff2" as="font" crossorigin)
+    link(rel="preload" href="fonts/Montserrat-SemiBold.woff2" as="font" crossorigin)
+    link(rel="preload" href="fonts/Montserrat-Regular.woff2" as="font" crossorigin)
+
+    block styles
+
+    link(rel="manifest", href="manifest.json")
+    title #{title}
+
+  body.page(data-theme="main")
+    +sprite
+    +line
+
+    block scripts

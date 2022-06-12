@@ -1,0 +1,50 @@
+.filter
+  box-sizing: border-box
+  display: grid
+  align-content: start
+
+  width: 368px
+  height: calc(100vh - (var(--height-line) + var(--indent-top)) - 20px)
+  padding-right: 20px
+
+  overflow-y: auto
+  overflow-x: hidden
+  @include remove-scrollbar
+
+.filter__title
+  @include form-heading(16px)
+
+.filter__button
+  justify-self: start
+  box-sizing: border-box
+
+  display: flex
+  justify-content: center
+  align-items: center
+
+  margin: 0
+  padding: 10px 22px
+
+  font-family: inherit
+  font-size: 20px
+  font-weight: 700
+  line-height: 1.6
+  letter-spacing: 0.02em
+  color: var(--color-main-bg)
+
+  background-color: var(--color-main-blue)
+  border-radius: 4px
+  border: none
+  outline: none
+
+  cursor: pointer
+
+  &:hover
+    background-color: var(--color-light-blue)
+
+  &:active, &:focus
+    background-color: var(--color-dark-blue)
+
+  &:disabled
+    background-color: var(--color-disabled-blue)
+    cursor: default

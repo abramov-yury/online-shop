@@ -1,0 +1,10 @@
+div(class=`${locals.parent}__select select`)
+  label.select__label(for=locals.id) #{locals.header}
+  select.select__options.js-select__options(id=locals.id name=locals.name)
+    each item in locals.items
+      if(locals.selectedOption && item.value === locals.selectedOption)
+        option(value=item.value selected) #{item.title}
+      else
+        option(value=item.value) #{item.title}
+  svg.select__icon(width="14" height="8" aria-hidden="true" role="presentation")
+    use(href="#down-arrowhead")

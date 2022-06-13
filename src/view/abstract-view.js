@@ -1,4 +1,4 @@
-import {createElement} from "../helpers/render.js";
+import { createElement } from "../helpers/render";
 
 export class AbstractView {
   constructor() {

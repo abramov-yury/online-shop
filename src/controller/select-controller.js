@@ -1,6 +1,6 @@
-import { render } from "../helpers/render.js";
+import { render } from "../helpers/render";
 
-import { SelectView } from "../view/select-view.js";
+import { SelectView } from "../view/select-view";
 
 export class SelectController {
   constructor(container, parameters, position) {

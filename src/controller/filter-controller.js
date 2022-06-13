@@ -2,9 +2,12 @@ import { render, RenderPosition } from "../helpers/render";
 import { debounce } from "../helpers/utilities";
 import { categories, CategoryType } from "../helpers/const";
 
+import { Observer } from "../helpers/observer";
+
 import { FilterView } from "../view/filter-view";
 
 import { SelectController } from "./select-controller";
+import { RangeController } from "./range-controller";
 
 export class FilterController {
   constructor(container, model, position) {
@@ -13,6 +16,7 @@ export class FilterController {
     this.position = position;
 
     this.view = null;
+    this.filters = null;
 
     this.selectController = null;
 
@@ -22,12 +26,14 @@ export class FilterController {
 
   initiate(parameters) {
     this.model.setCategory(CategoryType.ALL);
+    this.filters = new Observer();
 
     this.view = new FilterView(parameters);
     render(this.container, this.view, this.position);
     this._setHandlers();
 
     this._renderSelect();
+    this._renderRangeSlider(this.model.getAllProducts(), 1e5);
   }
 
   _setHandlers() {
@@ -43,28 +49,84 @@ export class FilterController {
     this.selectController.setSelectChangeHandler(this.onSelectChange);
   }
 
-  onButtonClick() {
-    console.log("filter button click");
+  _renderRangeSlider(products, step) {
+    this.rangeController = new RangeController(this.view.getButton(), RenderPosition.BEFORE, {parent: "filter"});
+    this.filters.subscribe(this.rangeController);
+    this.rangeController.initiate(products, step);
+  }
+
+  _removeFilters() {
+    this.filters.subscribers.forEach((item) => item.remove());
+    this.filters.subscribers.forEach((item) => this.filters.unsubscribe(item));
+  }
+
+  _renderEstateFilter() {
+    this.model.setCategory(CategoryType.ESTATE);
+
+    this._removeFilters();
+    this._renderRangeSlider(this.model.getEstate(), 1e5);
+
+    console.log(this.model.getEstate());
+  }
+
+  _renderLaptopsFilter() {
+    this.model.setCategory(CategoryType.LAPTOPS);
+
+    this._removeFilters();
+    this._renderRangeSlider(this.model.getLaptops(), 1e3);
+
+    console.log(this.model.getLaptops());
+  }
+
+  _renderCameraFilter() {
+    this.model.setCategory(CategoryType.CAMERA);
+
+    this._removeFilters();
+    this._renderRangeSlider(this.model.getCamera(), 1e3);
+
+    console.log(this.model.getCamera());
+  }
+
+  _renderCarsFilter() {
+    this.model.setCategory(CategoryType.CARS);
+
+    this._removeFilters();
+    this._renderRangeSlider(this.model.getCars(), 1e4);
+
+    console.log(this.model.getCars());
+  }
+
+  _renderAllFilter() {
+    this.model.setCategory(CategoryType.ALL);
+
+    this._removeFilters();
+    this._renderRangeSlider(this.model.getAllProducts(), 1e5);
+
+    console.log(this.model.getAllProducts());
   }
 
   onSelectChange(evt) {
     switch (evt.target.value) {
       case (CategoryType.ESTATE) :
-        console.log(this.model.getEstate());
+        this._renderEstateFilter();
         break;
       case (CategoryType.LAPTOPS) :
-        console.log(this.model.getLaptops());
+        this._renderLaptopsFilter();
         break;
       case (CategoryType.CAMERA) :
-        console.log(this.model.getCamera());
+        this._renderCameraFilter();
         break;
       case (CategoryType.CARS) :
-        console.log(this.model.getCars());
+        this._renderCarsFilter();
         break;
       case (CategoryType.ALL) :
       default:
-        console.log(this.model.getAllProducts());
+        this._renderAllFilter();
     }
+  }
+
+  onButtonClick() {
+    console.log("filter button click");
   }
 
 }

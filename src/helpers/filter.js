@@ -2,6 +2,7 @@ import { serverCategories } from "./adapter";
 
 export const Elements = {
   form: "filter-form",
+  slider: "range",
 };
 
 export const filterCategory = (products, category) => {

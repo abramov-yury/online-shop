@@ -1,4 +1,4 @@
-import { CategoryType } from "./const.js";
+import { CategoryType } from "./const";
 
 export const serverCategories = {
   [CategoryType.ESTATE] : "Недвижимость",

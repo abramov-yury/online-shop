@@ -1,0 +1,14 @@
+- slider_name = require("../helpers/filter.js").Elements.slider;
+- class_name = locals.parent ? `${locals.parent}__range range` : "range"
+
+div(class=class_name)
+  label.range__label(for="range") Цена, ₽
+  div.range__tooltips-wrapper
+    p.range__tooltip.range__tooltip--left
+      span.range__tooltip--beginning От
+      span.range__tooltip--result 9000
+    p.range__tooltip.range__tooltip--right
+      span.range__tooltip--beginning До
+      span.range__tooltip--result 30000000
+  div.range__input-wrapper
+    input.range__input(type="text" id="range" name=slider_name)

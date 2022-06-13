@@ -1,0 +1,45 @@
+$pointer-width: 30px
+
+.range
+  display: flex
+  flex-direction: column
+
+.range__label
+  @include form-element-heading
+
+.range__tooltips-wrapper
+  display: flex
+  justify-content: space-between
+  height: 30px
+  margin-bottom: 5px
+
+.range__tooltip
+  display: flex
+  align-items: center
+  margin: 0
+
+  font-size: 13px
+  font-family: var(--font-main)
+  color: var(--color-disabled-blue)
+
+  user-select: none
+
+.range__tooltip--beginning
+  margin-right: 4px
+  text-transform: lowercase
+
+.range__input-wrapper
+  position: relative
+  width: calc(100% - #{$pointer-width})
+  margin: 0 auto
+
+.range__input
+  margin: 0
+  padding: 0
+  border: none
+  outline: none
+
+.range .AS__lane
+  position: relative
+  width: calc(100% + #{$pointer-width})
+  transform: translateX(calc(-#{$pointer-width} / 2))

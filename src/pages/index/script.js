@@ -1,4 +1,4 @@
-import {AppController} from "../../controller/app-controller.js";
+import {AppController} from "../../controller/app-controller";
 
 const url = "https://green-json-server.herokuapp.com/online-shop";
 

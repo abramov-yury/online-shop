@@ -1,11 +1,11 @@
-import { render, RenderPosition } from "../helpers/render.js";
+import { render, RenderPosition } from "../helpers/render";
 
-import { Model } from "../model/model.js";
+import { Model } from "../model/model";
 
-import { AppView } from "../view/app-view.js";
+import { AppView } from "../view/app-view";
 
-import { LostPageController } from "./lost-page-controller.js";
-import { FilterController } from "./filter-controller.js";
+import { LostPageController } from "./lost-page-controller";
+import { FilterController } from "./filter-controller";
 
 export class AppController {
   constructor(container, parent) {

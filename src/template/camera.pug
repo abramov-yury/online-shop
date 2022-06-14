@@ -1,0 +1,6 @@
+include checkboxes
+
+- camera_type = require("./filter.json").camera_type;
+
+div.camera
+  +checkboxes("camera__checkboxes", camera_type)

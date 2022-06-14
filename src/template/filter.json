@@ -55,5 +55,35 @@
       {"name": "i5", "value": "i5", "id": "i5", "label": "Intel Core i5"},
       {"name": "i7", "value": "i7", "id": "i7", "label": "Intel Core i7"}
     ]
+  },
+  "camera_type": {
+    "legend": "Тип фотоаппарата",
+    "items": [
+      {"value": "slr", "name": "slr", "id": "slr", "label": "Зеркальный"},
+      {"value": "digital", "name": "digital", "id": "digital", "label": "Цифровой"},
+      {"value": "mirrorless", "name": "mirrorless", "id": "mirrorless", "label": "Беззеркальный"}
+    ]
+  },
+  "camera_matrix_resolution" : {
+    "header": "Минимальное разрешение матрицы",
+    "id": "matrix-resolution",
+    "name": "matrix-resolution",
+    "items": [
+      {"value": "any", "title": "Любое"},
+      {"value": "14", "title": "14 МП"},
+      {"value": "24", "title": "24 МП"}
+    ]
+  },
+  "camera_video_resolution" : {
+    "header": "Минимальное разрешение видео",
+    "id": "video-resolution",
+    "name": "video-resolution",
+    "items": [
+      {"value": "any", "title": "Любое"},
+      {"value": "hd", "title": "HD"},
+      {"value": "full-hd", "title": "Full HD"},
+      {"value": "4K", "title": "4K"},
+      {"value": "5K", "title": "5K"}
+    ]
   }
 }

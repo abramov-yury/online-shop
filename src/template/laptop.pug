@@ -1,0 +1,15 @@
+include checkboxes
+include radio-buttons
+
+-
+  date = require("./filter.json");
+  laptop_type = date.laptop_type;
+  laptop_ram = date.laptop_ram;
+  laptop_screen_size = date.laptop_screen_size;
+  laptop_cpu = date.laptop_cpu;
+
+div.laptop
+  +checkboxes("laptop__checkboxes", laptop_type)
+  +radio-buttons("laptop__radio-buttons", laptop_ram)
+  +radio-buttons("laptop__radio-buttons", laptop_screen_size)
+  +checkboxes("laptop__checkboxes", laptop_cpu)

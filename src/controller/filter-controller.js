@@ -9,6 +9,7 @@ import { FilterView } from "../view/filter-view";
 import { SelectController } from "./select-controller";
 import { RangeController } from "./range-controller";
 import { EstateController } from "./estate-controller";
+import { LaptopController } from "./laptop-controller";
 
 export class FilterController {
   constructor(container, model, position) {
@@ -21,6 +22,9 @@ export class FilterController {
     this.filters = null;
 
     this.selectController = null;
+    this.rangeController = null;
+    this.estateController = null;
+    this.laptopController = null;
 
     this.onButtonClick = this.onButtonClick.bind(this);
     this.onSelectChange = this.onSelectChange.bind(this);
@@ -79,6 +83,9 @@ export class FilterController {
 
     this._removeFilters();
     this._renderRangeSlider(this.model.getLaptops(), 1e3);
+    this.laptopController = new LaptopController(this.view.getButton(), RenderPosition.BEFORE);
+    this.filters.subscribe(this.laptopController);
+    this.laptopController.initiate();
 
     console.log(this.model.getLaptops());
   }

@@ -26,5 +26,34 @@
       {"name": "home", "value": "home", "id": "home_type", "label": "Домашний ноутбук"},
       {"name": "gaming", "value": "gaming", "id": "gaming_type", "label": "Игровой ноутбук"}
     ]
+  },
+  "laptop_ram": {
+    "legend": "Минимальный объем оперативной памяти",
+    "name": "ram",
+    "items": [
+      {"value": "any", "id": "any_ram", "label": "Любой"},
+      {"value": "4", "id": "4gb", "label": "4 Гб"},
+      {"value": "8", "id": "8gb", "label": "8 Гб"},
+      {"value": "16", "id": "16gb", "label": "16 Гб"}
+    ]
+  },
+  "laptop_screen_size": {
+    "legend": "Минимальная диагональ экрана",
+    "name": "diagonal",
+    "items": [
+      {"value": "any", "id": "any_diagonal", "label": "Любая"},
+      {"value": "13", "id": "13in", "label": "13", "sup": "″"},
+      {"value": "14", "id": "14in", "label": "14", "sup": "″"},
+      {"value": "15", "id": "15in", "label": "15", "sup": "″"},
+      {"value": "17", "id": "17in", "label": "17", "sup": "″"}
+    ]
+  },
+  "laptop_cpu": {
+    "legend": "Тип процессора",
+    "items": [
+      {"name": "i3", "value": "i3", "id": "i3", "label": "Intel Core i3"},
+      {"name": "i5", "value": "i5", "id": "i5", "label": "Intel Core i5"},
+      {"name": "i7", "value": "i7", "id": "i7", "label": "Intel Core i7"}
+    ]
   }
 }

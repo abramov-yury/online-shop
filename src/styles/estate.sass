@@ -1,0 +1,40 @@
+.estate
+  display: flex
+  flex-direction: column
+
+.estate__checkboxes
+  margin-bottom: 22px
+
+.estate__area
+  display: flex
+  flex-direction: column
+
+  margin-bottom: 20px
+
+.estate__label
+  @include filter-header
+
+  margin-bottom: 8px
+
+.estate__sup
+  @include sup-style
+
+.estate__input
+  @include select-style
+  -moz-appearance: textfield
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button
+    -webkit-appearance: none
+
+  &:hover,
+  &:focus
+    outline: none
+    border: 2px solid var(--color-light-blue)
+
+  &:disabled
+    background-color: var(--color-disabled-bg)
+
+  &:disabled:hover,
+  &:disabled:focus
+    border-color: var(--color-disabled-bg)

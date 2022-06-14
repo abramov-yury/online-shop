@@ -1,0 +1,30 @@
+{
+  "estate_type": {
+    "legend": "Тип недвижимости",
+    "items": [
+      {"label": "Дом", "name": "house", "value": "house", "id": "house_type"},
+      {"label": "Квартира", "name": "flat", "value": "flat", "id": "flat_type"},
+      {"label": "Апартаменты", "name": "apartment", "value": "apartment", "id": "apartment_type"}]
+  },
+  "estate_rooms": {
+    "legend": "Количество комнат",
+    "name": "rooms",
+    "items": [
+      {"label": "Любое", "value": "any", "id": "any_room"},
+      {"label": "1", "value": "1", "id": "one_room"},
+      {"label": "2", "value": "2", "id": "two_room"},
+      {"label": "3", "value": "3", "id": "three_room"},
+      {"label": "4", "value": "4", "id": "four_room"},
+      {"label": "5+", "value":"five_and_more", "id": "five_and_more"}
+    ]
+  },
+  "estate_area_name": "estate-area",
+  "laptop_type": {
+    "legend": "Тип ноутбука",
+    "items": [
+      {"name": "ultra", "value": "ultrabook", "id": "ultra_type", "label": "Ультрабук"},
+      {"name": "home", "value": "home", "id": "home_type", "label": "Домашний ноутбук"},
+      {"name": "gaming", "value": "gaming", "id": "gaming_type", "label": "Игровой ноутбук"}
+    ]
+  }
+}

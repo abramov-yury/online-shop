@@ -1,0 +1,19 @@
+include checkboxes
+include radio-buttons
+
+-
+  data = require("./filter.json");
+  checkbox = data.estate_type;
+  radio_buttons = data.estate_rooms;
+  area = data.estate_area_name;
+
+  class_name = locals.parent ? `${locals.parent}__estate estate` : "estate";
+
+div(class = class_name)
+  +checkboxes("estate__checkboxes", checkbox)
+  div.estate__area
+    label.estate__label(for=area)
+      | Минимальная площадь, м
+      sup.estate__sup 2
+    input.estate__input.js-estate__area-field(type="text" name=area id=area placeholder="0")
+  +radio-buttons("estate__radio-buttons", radio_buttons)

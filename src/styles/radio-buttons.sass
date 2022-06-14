@@ -1,0 +1,89 @@
+.radio-buttons
+  @include reset-fieldset
+
+  display: flex
+  flex-direction: column
+
+.radio-buttons__legend
+  @include filter-header
+
+  margin-bottom: 8px
+  padding-inline: 0
+
+.radio-buttons__list
+  @include reset-list
+
+  display: flex
+
+.radio-buttons__label
+  @include filter-label
+
+  display: flex
+  align-items: center
+  justify-content: center
+
+  border-color: var(--color-disabled-bg)
+
+  &:hover
+    color: var(--color-main-bg)
+
+    background-color: var(--color-light-blue)
+    border-color: var(--color-light-blue)
+
+.radio-buttons__label--regular
+  padding: 10px 18px 8px
+
+.radio-buttons__label--tight
+  padding: 8px 18px 6px
+
+.radio-buttons__item
+  $border-width: 2px
+  $border-style: solid
+
+  flex-grow: 1
+
+  &:first-of-type > .radio-buttons__label
+    border-width: $border-width
+    border-style: $border-style
+    border-radius: 4px 0 0 4px
+
+  &:not(:first-of-type) > .radio-buttons__label
+    border-top-width: $border-width
+    border-top-style: $border-style
+    border-right-width: $border-width
+    border-right-style: $border-style
+    border-bottom-width: $border-width
+    border-bottom-style: $border-style
+
+  &:last-of-type > .radio-buttons__label
+    border-radius: 0 4px 4px 0
+
+.radio-buttons__input:checked + .radio-buttons__label
+  color: var(--color-main-bg)
+
+  background-color: var(--color-light-blue)
+  border-color: var(--color-light-blue)
+
+.radio-buttons__input:focus + .radio-buttons__label
+  color: var(--color-main-bg)
+
+  background-color: var(--color-light-blue)
+  border-color: var(--color-light-blue)
+
+.radio-buttons__input:disabled + .radio-buttons__label
+  background-color: var(--color-main-bg)
+  color: var(--color-disabled-blue)
+  cursor: default
+
+.radio-buttons__input:disabled:focus + .radio-buttons__label,
+.radio-buttons__input:disabled:hover + .radio-buttons__label
+  border-color: var(--color-disabled-bg)
+
+.radio-buttons__input:disabled:checked + .radio-buttons__label
+  color: var(--color-disabled-blue)
+
+  background-color: var(--color-disabled-bg)
+  border-color: var(--color-disabled-bg)
+
+.radio-buttons__sup
+  @include sup-style

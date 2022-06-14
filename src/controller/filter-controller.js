@@ -8,6 +8,7 @@ import { FilterView } from "../view/filter-view";
 
 import { SelectController } from "./select-controller";
 import { RangeController } from "./range-controller";
+import { EstateController } from "./estate-controller";
 
 export class FilterController {
   constructor(container, model, position) {
@@ -15,6 +16,7 @@ export class FilterController {
     this.model = model;
     this.position = position;
 
+    this.name = "filter";
     this.view = null;
     this.filters = null;
 
@@ -42,7 +44,7 @@ export class FilterController {
 
   _renderSelect() {
     const parameters = Object.assign(categories);
-    parameters.parent = "filter";
+    parameters.parent = this.name;
 
     this.selectController = new SelectController(this.view.getButton(), parameters, RenderPosition.BEFORE);
     this.selectController.initiate(this.model.getCategory());
@@ -50,7 +52,7 @@ export class FilterController {
   }
 
   _renderRangeSlider(products, step) {
-    this.rangeController = new RangeController(this.view.getButton(), RenderPosition.BEFORE, {parent: "filter"});
+    this.rangeController = new RangeController(this.view.getButton(), RenderPosition.BEFORE, {parent: this.name});
     this.filters.subscribe(this.rangeController);
     this.rangeController.initiate(products, step);
   }
@@ -65,6 +67,9 @@ export class FilterController {
 
     this._removeFilters();
     this._renderRangeSlider(this.model.getEstate(), 1e5);
+    this.estateController = new EstateController(this.view.getButton(), {parent: this.name}, RenderPosition.BEFORE);
+    this.filters.subscribe(this.estateController);
+    this.estateController.initiate();
 
     console.log(this.model.getEstate());
   }

@@ -1,0 +1,8 @@
+mixin checkboxes(className="", obj={})
+  fieldset(class=`${className} checkboxes`)
+    legend.checkboxes__legend #{obj.legend}
+    ul.checkboxes__list
+      each item in obj.items
+        li.checkboxes__item
+          input.checkboxes__input.visually-hidden(type="checkbox" value=item.value name=item.name id=item.id)
+          label.checkboxes__label(for=item.id) #{item.label}

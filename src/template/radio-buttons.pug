@@ -1,0 +1,11 @@
+mixin radio-buttons(className="", obj={}, modifier="regular")
+  fieldset(class=`${className} radio-buttons`)
+    legend.radio-buttons__legend #{obj.legend}
+    ul.radio-buttons__list
+      each item in obj.items
+        li.radio-buttons__item
+          - isChecked = item.checked
+          input.radio-buttons__input.visually-hidden(type="radio" name=obj.name id=item.id value=item.value checked=isChecked)
+          label(class = `radio-buttons__label radio-buttons__label--${modifier}` for=item.id) #{item.label}
+            if(item.sup)
+              sup.radio-buttons__sup #{item.sup}

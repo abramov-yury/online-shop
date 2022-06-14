@@ -18,3 +18,59 @@
   color: var(--color-disabled-blue)
 
   user-select: none
+
+@mixin filter-header
+  font-weight: 600
+  line-height: 1.57
+  letter-spacing: 0.02em
+  color: var(--color-disabled-blue)
+
+  user-select: none
+
+@mixin filter-label
+  font-weight: 500
+  font-size: 16px
+  line-height: 1.75
+  color: var(--color-main-blue)
+  cursor: pointer
+
+  user-select: none
+
+@mixin reset-fieldset
+  padding: 0
+  border: none
+  min-inline-size: 0
+  margin-inline: 0
+
+@mixin reset-list
+  margin: 0
+  padding: 0
+  list-style: none
+
+@mixin sup-style
+  position: relative
+  top: -0.5em
+  vertical-align: baseline
+  font-size: 75%
+  line-height: 0
+
+@mixin select-style($ms: 12px)
+  appearance: none
+  padding: 10px $ms 6px
+
+  text-transform: none
+  font-family: inherit
+  font-weight: 500
+  font-size: 16px
+  line-height: 1.75
+  color: var(--color-text-gray)
+
+  border: 2px solid var(--color-disabled-bg)
+  border-radius: 4px
+
+  background-color: var(--color-main-bg)
+  cursor: pointer
+
+  &:disabled
+    color: var(--color-disabled-blue)
+    cursor: default

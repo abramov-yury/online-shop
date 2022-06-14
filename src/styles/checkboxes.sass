@@ -1,0 +1,88 @@
+.checkboxes
+  @include reset-fieldset
+
+  display: flex
+  flex-direction: column
+
+.checkboxes__legend
+  @include filter-header
+
+  margin-bottom: 12px
+  padding-inline: 0
+
+.checkboxes__list
+  @include reset-list
+
+.checkboxes__item:not(:last-child)
+  margin-bottom: 12px
+
+.checkboxes__label
+  @include filter-label
+
+  position: relative
+  display: flex
+  align-items: center
+
+  padding-left: 36px
+
+  &::before
+    box-sizing: border-box
+    content: ""
+    position: absolute
+    left: 0
+    display: block
+    width: 24px
+    height: 24px
+    border: 2px solid #e1e3ec
+    border-radius: 4px
+    transition: var(--animation)
+
+  &::after
+    content: ""
+    position: absolute
+    left: 0
+
+    display: none
+    width: 24px
+    height: 24px
+
+    background-image: url(#{$path_for_images}icon-tick.svg)
+    background-repeat: no-repeat
+    background-position: center
+    transition: var(--animation)
+
+.checkboxes__input:checked + .checkboxes__label
+  &::before
+    background-color: var(--color-light-blue)
+    border-color: var(--color-light-blue)
+  &::after
+    display: block
+
+.checkboxes__input:focus + .checkboxes__label,
+.checkboxes__input:hover + .checkboxes__label
+  color: var(--color-light-blue)
+
+  &::before
+    border-color: var(--color-light-blue)
+
+.checkboxes__input:disabled + .checkboxes__label
+  color: var(--color-disabled-blue)
+  cursor: default
+
+  &::before
+    background-color: var(--color-disabled-bg)
+    cursor: default
+
+.checkboxes__input:disabled:hover + .checkboxes__label
+  color: var(--color-disabled-blue)
+
+  &::before
+    border-color: var(--color-disabled-bg)
+
+.checkboxes__input:disabled:checked + .checkboxes__label
+  &::before
+    background-color: var(--color-disabled-bg)
+    border-color: var(--color-disabled-bg)
+
+  &::after
+    background-image: url(#{$path_for_images}icon-tick_disabled.svg)

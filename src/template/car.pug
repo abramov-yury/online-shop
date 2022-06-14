@@ -1,0 +1,10 @@
+include radio-buttons
+include checkboxes
+
+-
+  data = require("./filter.json");
+  class_name = locals.parent ? `${locals.parent}__car car` : "car";
+
+div(class = class_name)
+  +radio-buttons("car__radio-buttons", data.car_transmission)
+  +checkboxes("car__checkboxes", data.car_body_type)

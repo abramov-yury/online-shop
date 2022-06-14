@@ -85,5 +85,41 @@
       {"value": "4K", "title": "4K"},
       {"value": "5K", "title": "5K"}
     ]
+  },
+  "car_year": {
+    "header": "Минимальный год выпуска",
+    "id": "year-production",
+    "name": "year-production",
+    "items": [
+      {"value": "any", "title": "Любой"},
+      {"value": "1950", "title": "1950"},
+      {"value": "2000", "title": "2000"},
+      {"value": "2010", "title": "2010"},
+      {"value": "2015", "title": "2015"},
+      {"value": "2016", "title": "2016"},
+      {"value": "2017", "title": "2017"},
+      {"value": "2018", "title": "2018"},
+      {"value": "2019", "title": "2019"},
+      {"value": "2020", "title": "2020"}
+    ]
+  },
+  "car_transmission": {
+    "legend": "Коробка передач",
+    "name" : "transmission",
+    "items": [
+      {"label": "Любая", "value": "any", "id": "any_gearbox"},
+      {"label": "Механика", "value": "mechanic", "id": "mechanic_gearbox"},
+      {"label": "Автомат", "value": "auto", "id": "auto_gearbox"}
+    ]
+  },
+  "car_body_type": {
+    "legend": "Тип кузова",
+    "items": [
+      {"label": "Седан", "value": "sedan", "name": "sedan", "id": "sedan"},
+      {"label": "Универсал", "value": "universal", "name": "universal", "id": "universal"},
+      {"label": "Хэтчбэк", "value": "hatchback", "name": "hatchback", "id": "hatchback"},
+      {"label": "Внедорожник", "value": "suv", "name": "suv", "id": "suv"},
+      {"label": "Купе", "value": "coupe", "name": "coupe", "id": "coupe"}
+    ]
   }
 }

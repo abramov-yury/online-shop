@@ -11,6 +11,7 @@ import { RangeController } from "./range-controller";
 import { EstateController } from "./estate-controller";
 import { LaptopController } from "./laptop-controller";
 import { CameraController } from "./camera-controller";
+import { CarController } from "./car-controller";
 
 export class FilterController {
   constructor(container, model, position) {
@@ -27,6 +28,7 @@ export class FilterController {
     this.estateController = null;
     this.laptopController = null;
     this.cameraController = null;
+    this.carController = null;
 
     this.onButtonClick = this.onButtonClick.bind(this);
     this.onSelectChange = this.onSelectChange.bind(this);
@@ -109,6 +111,9 @@ export class FilterController {
 
     this._removeFilters();
     this._renderRangeSlider(this.model.getCars(), 1e4);
+    this.carController = new CarController(this.view.getButton(), {parent: this.name}, RenderPosition.BEFORE);
+    this.filters.subscribe(this.carController);
+    this.carController.initiate();
 
     console.log(this.model.getCars());
   }

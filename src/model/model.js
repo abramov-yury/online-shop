@@ -48,4 +48,12 @@ export class Model {
     return filterCategory(this.products, CategoryType.CARS);
   }
 
+  setCurrentProducts(products) {
+    this.currentProducts = products;
+  }
+
+  getCurrentProducts() {
+    return this.currentProducts;
+  }
+
 }

@@ -74,3 +74,18 @@
   &:disabled
     color: var(--color-disabled-blue)
     cursor: default
+
+@mixin link
+  text-decoration: none
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
+  outline: none
+
+@mixin address
+  margin: 0
+
+  font-size: 20px
+  font-weight: 500
+  line-height: 1.4
+  color: var(--color-disabled-blue)

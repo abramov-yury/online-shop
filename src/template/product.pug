@@ -1,0 +1,41 @@
+include publish-date
+include picture
+
+-
+
+  price = locals.price.toLocaleString();
+  frames = null;
+  product_navigation_limit = null;
+
+  if(locals.photos.length > 1) {
+    frames = require("../helpers/product.js").getImagesProduct(locals.photos);
+    product_navigation_limit = require("../helpers/product.js").PRODUCTS_NAVIGATION_LIMIT;
+  }
+
+  cls = locals.parent ? `${locals.parent}__product product` : "product";
+
+  picture = {
+    "picture class name" : "js-product__picture",
+    "image class name" : "product__image js-product__image",
+    "photo" : locals.photos[0],
+    "name" : locals.name,
+  }
+
+div(class=cls)
+  div.product__navigation.js-product__navigation
+    +picture(picture)
+    if frames
+      ul.product__navigation-list
+        each item, index in frames
+          li.product__navigation-item.js-product__navigation-item(data-frame=index)
+    if locals.photos.length > product_navigation_limit
+      div.product__more-photos.js-product__more-photos
+        - number = locals.photos.length - product_navigation_limit;
+        | + #{number} фото
+  div.product__content
+    div.product__description
+      h3.product__title
+        a.product__link.js-product__link(href="#") #{locals.name}
+      p.product__price #{price} &#8381;
+      p.product__address #{locals.address.city}, #{locals.address.street}
+    +publish-date(`product__date`, locals[`publish-date`])

@@ -1,0 +1,29 @@
+mixin picture(obj)
+
+  -
+    product_images_path = require("../helpers/product.js").productsImagesPath;
+
+    picture_class_name = obj["picture class name"] ? obj["picture class name"] : false;
+    image_class_name = obj["image class name"] ? obj["image class name"] : false;
+
+    image_width = obj.width ? obj.width : false;
+    image_height = obj.height ? obj.height : false;
+
+  picture&attributes({"class" : picture_class_name})
+    source(type="image/webp" srcset=`
+            ${product_images_path}${obj.photo}.webp,
+            ${product_images_path}${obj.photo}@2x.webp 2x,
+            ${product_images_path}${obj.photo}@3x.webp 3x,
+            ${product_images_path}${obj.photo}@4x.webp 4x,
+          `)
+    img(
+      srcset=`
+              ${product_images_path}${obj.photo}@2x.jpg 2x,
+              ${product_images_path}${obj.photo}@3x.jpg 3x,
+              ${product_images_path}${obj.photo}@4x.jpg 4x,
+            `
+      src=`${product_images_path}${obj.photo}.jpg`
+      alt=`${obj.name}`
+      data-img-name=`${obj.photo}`
+      loading="lazy"
+    )&attributes({"width" : image_width, "height" : image_height, "class" : image_class_name})

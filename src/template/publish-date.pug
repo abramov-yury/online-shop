@@ -1,0 +1,23 @@
+mixin publish-date(class_name="", publish_date)
+
+  -
+    months = {
+      0: "Января",
+      1: "Февраля",
+      2: "Марта",
+      3: "Апреля",
+      4: "Мая",
+      5: "Июня",
+      6: "Июля",
+      7: "Августа",
+      8: "Сентября",
+      9: "Октября",
+      10: "Ноября",
+      11: "Декабря",
+    };
+
+    date = new Date(Number(publish_date)).getDate();
+    month = months[new Date(Number(publish_date)).getMonth()];
+    year = new Date(Number(publish_date)).getFullYear();
+
+  span(class=`${class_name} publish-date`) #{date} #{month} #{year} года

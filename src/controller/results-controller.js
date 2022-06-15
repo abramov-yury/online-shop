@@ -2,6 +2,8 @@ import { render } from "../helpers/render";
 
 import { ResultsView } from "../view/results-view";
 
+import { ProductController } from "./product-controller";
+
 export class ResultsController {
   constructor(container, model, position) {
     this.container = container;
@@ -10,6 +12,8 @@ export class ResultsController {
 
     this.view = null;
 
+    this.productController = null;
+
     this.onSortingChange = this.onSortingChange.bind(this);
     this.onFavoriteButtonClick = this.onFavoriteButtonClick.bind(this);
   }
@@ -17,8 +21,9 @@ export class ResultsController {
   initiate(parameters) {
     this.view = new ResultsView(parameters);
     render(this.container, this.view, this.position);
-
     this._setHandlers();
+
+    this._renderProduct(this.model.getAllProducts()[20]);
   }
 
   onSortingChange(evt) {
@@ -34,5 +39,10 @@ export class ResultsController {
   _setHandlers() {
     this.view.setSortingHandler(this.onSortingChange);
     this.view.setFavoriteButtonClickHandler(this.onFavoriteButtonClick);
+  }
+
+  _renderProduct(product) {
+    this.productController = new ProductController(this.view.getResultsContainer(), Object.assign(product, {parent: "results"}));
+    this.productController.initiate();
   }
 }

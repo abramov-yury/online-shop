@@ -6,6 +6,7 @@ import { AppView } from "../view/app-view";
 
 import { LostPageController } from "./lost-page-controller";
 import { FilterController } from "./filter-controller";
+import { ResultsController } from "./results-controller";
 
 export class AppController {
   constructor(container, parent) {
@@ -17,6 +18,7 @@ export class AppController {
 
     this.pageNotFoundController = null;
     this.filterController = null;
+    this.resultsController = null;
   }
 
   async initiate(url) {
@@ -32,6 +34,7 @@ export class AppController {
     render(this.container, this.view, RenderPosition.AFTER);
 
     this._renderFilter();
+    this._renderResults();
   }
 
   _renderLostPage() {
@@ -42,5 +45,10 @@ export class AppController {
   _renderFilter() {
     this.filterController = new FilterController(this.view, this.model);
     this.filterController.initiate({parent: "app"});
+  }
+
+  _renderResults() {
+    this.resultsContoller = new ResultsController(this.view, this.model);
+    this.resultsContoller.initiate({parent: "app"});
   }
 }

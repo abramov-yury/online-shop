@@ -1,0 +1,81 @@
+.results
+  display: flex
+  flex-direction: column
+
+  width: 860px
+  height: calc(100vh - (var(--height-line) + var(--indent-top)))
+
+.results__head
+  display: grid
+  grid-template-columns: auto auto
+  grid-template-rows: auto auto
+  justify-content: space-between
+  align-items: end
+
+  margin-bottom: 30px
+
+.results__title
+  grid-column: 1 / -1
+
+  @include form-heading
+
+.results__form
+  grid-column: 1 / 2
+  display: flex
+
+.results__favorite
+  box-sizing: border-box
+  display: flex
+  justify-content: center
+  align-items: center
+
+  padding: 8px 18px 6px
+
+  border-radius: 4px
+  border: 2px solid var(--color-disabled-bg)
+  background-color: var(--color-main-bg)
+
+  cursor: pointer
+
+.results__heart-icon
+  --sprite-heart-stroke: var(--color-main-blue)
+  --sprite-heart-fill: var(--color-main-bg)
+
+.results__button-text
+  margin-left: 16px
+
+  font-family: var(--font-main)
+  font-size: 16px
+  font-weight: 500
+  line-height: 1.75
+  color: var(--color-main-blue)
+
+.results__favorite:hover,
+.results__favorite:focus
+  border-color: var(--color-light-blue)
+  background-color: var(--color-light-blue)
+
+  & > .results__heart-icon
+    --sprite-heart-stroke: var(--color-main-bg)
+    --sprite-heart-fill: var(--color-light-blue)
+
+  & > .results__button-text
+    color: var(--color-main-bg)
+
+.results__favorite--active,
+.results__favorite--active:hover,
+.results__favorite--active:focus
+  border-color: var(--color-main-blue)
+  background-color: var(--color-main-blue)
+
+  & > .results__heart-icon
+    --sprite-heart-stroke: var(--color-main-bg)
+    --sprite-heart-fill: var(--color-main-blue)
+
+  & > .results__button-text
+    color: var(--color-main-bg)
+
+.results__container
+  @include remove-scrollbar
+  flex-grow: 1
+  overflow-y: auto

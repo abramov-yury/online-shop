@@ -1,0 +1,14 @@
+include radio-buttons
+
+- Sorting = require("../helpers/sorting.js");
+
+section(class=`${locals.parent}__results results`)
+  header.results__head.js-results__head
+    h2.results__title Результаты
+    form.results__form.js-results__form(name=Sorting.RESULTS_FORM_NAME)
+      +radio-buttons("results__radio-buttons", Sorting.RESULTS_SORTING, "tight")
+    button.results__favorite.js-results__favorite(type="button")
+      svg.results__heart-icon(width=22 height=20 role="presentation" aria-hidden="true")
+        use(href="#heart-icon")
+      span.results__button-text Показать избранные
+  div.results__container.js-results__container

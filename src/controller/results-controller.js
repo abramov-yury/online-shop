@@ -2,6 +2,7 @@ import { render } from "../helpers/render";
 import { throttle } from "../helpers/utilities";
 
 import { Observer } from "../helpers/observer";
+import { Mediator } from "../helpers/mediator";
 
 import { ResultsView } from "../view/results-view";
 
@@ -30,10 +31,12 @@ export class ResultsController {
   initiate(parameters) {
     this.view = new ResultsView(parameters);
     render(this.container, this.view, this.position);
+
     this.controllers = new Observer();
     this.view.getResultsContainer().addEventListener("scroll", throttle(this.checkPosition, 250));
     window.addEventListener("resize", throttle(this.checkPosition, 250));
     this._setHandlers();
+    this._updateMediator();
 
     this.presentProducts(this.model.getAllProducts());
   }
@@ -60,6 +63,8 @@ export class ResultsController {
   }
 
   presentProducts(products) {
+    this._cleanResults();
+
     this.model.setCurrentProducts(products);
     this._renderProducts();
   }
@@ -67,6 +72,18 @@ export class ResultsController {
   _setHandlers() {
     this.view.setSortingHandler(this.onSortingChange);
     this.view.setFavoriteButtonClickHandler(this.onFavoriteButtonClick);
+  }
+
+  _updateMediator() {
+    this.presentProducts = this.presentProducts.bind(this);
+
+    Mediator.presentResults = this.presentProducts;
+  }
+
+  _cleanResults() {
+    if(this.controllers.subscribers) {
+      this._removeProducts();
+    }
   }
 
   _renderProducts() {

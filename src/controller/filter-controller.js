@@ -3,6 +3,7 @@ import { debounce } from "../helpers/utilities";
 import { categories, CategoryType } from "../helpers/const";
 
 import { Observer } from "../helpers/observer";
+import { Mediator } from "../helpers/mediator";
 
 import { FilterView } from "../view/filter-view";
 
@@ -79,7 +80,7 @@ export class FilterController {
     this.filters.subscribe(this.estateController);
     this.estateController.initiate();
 
-    console.log(this.model.getEstate());
+    Mediator.presentResults(this.model.getEstate());
   }
 
   _renderLaptopsFilter() {
@@ -91,7 +92,7 @@ export class FilterController {
     this.filters.subscribe(this.laptopController);
     this.laptopController.initiate();
 
-    console.log(this.model.getLaptops());
+    Mediator.presentResults(this.model.getLaptops());
   }
 
   _renderCameraFilter() {
@@ -103,7 +104,7 @@ export class FilterController {
     this.filters.subscribe(this.cameraController);
     this.cameraController.initiate();
 
-    console.log(this.model.getCamera());
+    Mediator.presentResults(this.model.getCamera());
   }
 
   _renderCarsFilter() {
@@ -115,7 +116,7 @@ export class FilterController {
     this.filters.subscribe(this.carController);
     this.carController.initiate();
 
-    console.log(this.model.getCars());
+    Mediator.presentResults(this.model.getCars());
   }
 
   _renderAllFilter() {
@@ -124,7 +125,7 @@ export class FilterController {
     this._removeFilters();
     this._renderRangeSlider(this.model.getAllProducts(), 1e5);
 
-    console.log(this.model.getAllProducts());
+    Mediator.presentResults(this.model.getAllProducts());
   }
 
   onSelectChange(evt) {

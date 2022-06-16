@@ -1,6 +1,7 @@
 import { render, RenderPosition } from "../helpers/render";
 import { debounce } from "../helpers/utilities";
 import { categories, CategoryType } from "../helpers/const";
+import {filterByAll, filterByEstate, filterByLaptops, filterByCamera, filterByCars } from "../helpers/filter.js";
 
 import { Observer } from "../helpers/observer";
 import { Mediator } from "../helpers/mediator";
@@ -149,7 +150,22 @@ export class FilterController {
   }
 
   onButtonClick() {
-    console.log("filter button click");
+    switch (this.model.getCategory()) {
+      case (CategoryType.ALL) :
+        Mediator.presentResults(filterByAll(this.model.getAllProducts()));
+        break;
+      case (CategoryType.ESTATE) :
+        Mediator.presentResults(filterByEstate(this.model.getEstate()));
+        break;
+      case (CategoryType.LAPTOPS) :
+        Mediator.presentResults(filterByLaptops(this.model.getLaptops()));
+        break;
+      case (CategoryType.CAMERA) :
+        Mediator.presentResults(filterByCamera(this.model.getCamera()));
+        break;
+      case (CategoryType.CARS) :
+        Mediator.presentResults(filterByCars(this.model.getCars()));
+    }
   }
 
 }

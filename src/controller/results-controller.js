@@ -7,6 +7,9 @@ import { Mediator } from "../helpers/mediator";
 import { ResultsView } from "../view/results-view";
 
 import { ProductController } from "./product-controller";
+import { InfoController } from "./info-controller";
+
+const INFO = require("../template/info.json");
 
 export class ResultsController {
   constructor(container, model, position) {
@@ -18,6 +21,7 @@ export class ResultsController {
     this.controllers = null;
 
     this.productController = null;
+    this.infoController = null;
 
     this.numberDefaultProducts = 7;
     this.numberLoadedProducts = 5;
@@ -64,8 +68,14 @@ export class ResultsController {
 
   presentProducts(products) {
     this._cleanResults();
-
     this.model.setCurrentProducts(products);
+
+    if(!products.length) {
+      this.infoController = new InfoController(this.view.getResultsContainer(), INFO.common);
+      this.infoController.initiate();
+      return;
+    }
+
     this._renderProducts();
   }
 
@@ -81,9 +91,8 @@ export class ResultsController {
   }
 
   _cleanResults() {
-    if(this.controllers.subscribers) {
-      this._removeProducts();
-    }
+    if(this.controllers.subscribers) this._removeProducts();
+    if(this.infoController) this.infoController.remove();
   }
 
   _renderProducts() {

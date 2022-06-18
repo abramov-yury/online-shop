@@ -1,0 +1,5 @@
+mixin button-cross(obj={})
+  button(class = `${obj.class_name} button-cross` type="button")
+    span.button-cross__text #{obj.text}
+    svg.button-cross__icon(width="16" height="16" aria-hidden="true" role="presentation")
+      use(href="#cross-icon")

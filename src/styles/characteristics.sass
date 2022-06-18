@@ -1,0 +1,22 @@
+.characteristics
+  display: flex
+  flex-wrap: wrap
+
+.characteristic
+  display: flex
+  flex-direction: column
+  padding-bottom: 20px
+
+  &:not(:last-child)
+    margin-right: 44px
+
+.characteristic__term
+  @include popup-title
+
+.characteristic__definition
+  margin-left: 0
+
+  font-size: 20px
+  line-height: 1.6
+  font-weight: 600
+  color: var(--color-text-gray)

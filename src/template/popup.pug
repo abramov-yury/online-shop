@@ -1,0 +1,41 @@
+include publish-date
+include button-cross
+include picture
+include characteristics
+include seller
+
+-
+  price = locals.price.toLocaleString();
+
+  picture = {
+    photo : locals.photos[0],
+    name : locals.name,
+    width : 520,
+    height : 340,
+    "picture class name" : "js-popup__main-picture"
+  }
+
+section.popup
+  div.popup__inner.js-popup__inner
+    header.popup__header
+      +publish-date("popup__date", locals["publish-date"])
+      h3.popup__title #{locals.name}
+      p.popup__price #{price} &#8381;
+      +button-cross({class_name:"popup__button-cross js-popup__button-cross", text: "Закыть объявление"})
+    div.popup__columns
+      div.popup__left
+        div.popup__gallery
+          div.popup__picture-wrapper
+            +picture(picture)
+          ul.popup__gallery-list.js-popup__gallery-list
+            each item in locals.photos
+              li.popup__gallery-item
+                +picture({photo: item, width: 124, height: 80, name: locals.name})
+        +characteristics({class_name: "popup__characteristics", category: locals.category, filters: locals.filters})
+        +seller({class_name: "popup__seller", name: locals.seller.name, rating: locals.seller.rating})
+        div.popup__description
+          h3.popup__description-title Описание товара
+          p.popup__description-text #{locals.description}
+      div.popup__right
+        div(class="popup__map" id = `map-${locals.id}`)
+        p.popup__address #{locals.address.city}, <br>#{locals.address.street}, <br>#{locals.address.building}

@@ -1,0 +1,73 @@
+.seller__title
+  @include popup-title
+
+  margin: 0 0 8px 0
+
+.seller__data
+  display: flex
+  align-items: center
+
+.seller__name
+  margin-right: 10px
+
+  font-size: 20px
+  line-height: 1.6
+  font-weight: 500
+  color: var(--color-main-blue)
+
+  transition-property: color
+  transition-duration: 0.155s
+  transition-timing-function: ease
+
+  outline-color: var(--color-light-blue)
+  background-color: transparent
+  text-decoration: none
+
+  &:focus, &:hover
+    color: var(--color-light-blue)
+
+  &:active
+    color: var(--color-dark-blue)
+
+.seller__rating
+  position: relative
+
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 30px
+  height: 20px
+
+  font-size: 14px
+  line-height: 1.42
+  font-weight: 600
+  color: var(--color-main-bg)
+
+  border-radius: 2px
+  background-color: var(--color-main-blue)
+
+
+.seller__rating--good, .seller__rating--bad
+  &::after
+    content: ""
+    position: absolute
+
+    top: 0
+    right: -2px
+
+    width: 26px
+    height: 34px
+
+.seller__rating--good
+  background-color: #44B156
+
+  &::after
+    transform: translate(100%, -36%)
+    background-image: url("#{$path_for_images}hand-green.svg")
+
+.seller__rating--bad
+  background-color: #97A2B5
+
+  &::after
+    transform: translate(100%, -6%)
+    background-image: url("#{$path_for_images}hand-gray.svg")

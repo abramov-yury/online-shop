@@ -1,0 +1,13 @@
+mixin seller(obj)
+  div(class = `${obj.class_name} seller`)
+    h3.seller__title Продавец
+    .seller__data
+      a.seller__name(href="#") #{obj.name}
+
+      -
+        rating_class_name = "seller__rating";
+        if(obj.rating >= 4.8) rating_class_name += " seller__rating--good";
+        if(obj.rating < 4) rating_class_name += " seller__rating--bad";
+
+      div(class = rating_class_name)
+        | #{obj.rating}

@@ -2,6 +2,8 @@ import { render } from "../helpers/render.js";
 
 import { ProductView } from "../view/product-view.js";
 
+import { PopupController } from "./popup-controller.js";
+
 export class ProductController {
   constructor(container, parameters, position) {
     this.container = container;
@@ -9,6 +11,8 @@ export class ProductController {
     this.position = position;
 
     this.view = null;
+
+    this.popupController = null;
 
     this.showPopup = this.showPopup.bind(this);
   }
@@ -25,7 +29,9 @@ export class ProductController {
   }
 
   showPopup(evt) {
-    console.log(evt.target);
+    evt.stopPropagation();
+    this.popupController = new PopupController(document.body, this.parameters);
+    this.popupController.initiate();
   }
 
   remove() {

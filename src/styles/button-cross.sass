@@ -1,0 +1,26 @@
+.button-cross
+  box-sizing: content-box
+  display: flex
+  justify-content: center
+  align-items: center
+
+  width: 16px
+  height: 16px
+  padding: 2px
+  margin: 0
+
+  transition: var(--animation)
+
+  background-color: var(--color-main-bg)
+  border: none
+  outline-color: var(--color-light-blue)
+  cursor: pointer
+
+  &:hover, &:focus
+    --sprite-cross-icon: var(--color-light-blue)
+
+  &:active
+    --sprite-cross-icon: var(--color-dark-blue)
+
+.button-cross__text
+  font-size: 0

@@ -1,0 +1,20 @@
+-
+  filters_names = require("../helpers/adapter.js").filtersNames
+  filters_values = require("../helpers/adapter.js").filtersValues
+
+mixin characteristics(obj)
+
+  -
+    adapter_names = filters_names[obj.category]
+    adapter_values = filters_values[obj.category]
+
+    filter_check = (filter) => filter[1] !== "-" && filter[1] !== ""
+    filters = Object.entries(obj.filters).filter(filter_check)
+
+  if (filters.length)
+    dl(class = `${obj.class_name} characteristics`)
+      each item in filters
+        div.characteristic
+          dt.characteristic__term #{adapter_names[item[0]]}
+          - definition = adapter_values[item[1]] ? adapter_values[item[1]] : item[1]
+          dd.characteristic__definition #{definition}

@@ -1,5 +1,6 @@
 import { render } from "../helpers/render";
 import { throttle } from "../helpers/utilities";
+import { SortingValue, sortProducts } from "../helpers/sorting";
 
 import { Observer } from "../helpers/observer";
 import { Mediator } from "../helpers/mediator";
@@ -42,11 +43,16 @@ export class ResultsController {
     this._setHandlers();
     this._updateMediator();
 
+
+    this.model.setSortingValue(SortingValue.POPULAR);
     this.presentProducts(this.model.getAllProducts());
   }
 
   onSortingChange(evt) {
-    console.log(evt.target.value);
+    this.model.setSortingValue(evt.target.value);
+    if(!this.model.currentProducts.length) return;
+
+    this.presentProducts(this.model.getCurrentProducts());
   }
 
   onFavoriteButtonClick() {
@@ -68,7 +74,7 @@ export class ResultsController {
 
   presentProducts(products) {
     this._cleanResults();
-    this.model.setCurrentProducts(products);
+    this.model.setCurrentProducts(sortProducts(this.model.getSortingValue(), products));
 
     if(!products.length) {
       this.infoController = new InfoController(this.view.getResultsContainer(), INFO.common);

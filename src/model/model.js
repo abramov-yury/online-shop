@@ -5,6 +5,9 @@ export class Model {
   constructor() {
     this.products = null;
     this.category = null;
+
+    this.currentProducts = null;
+    this.sortingValue = null;
   }
 
   async setProducts(url) {
@@ -54,6 +57,14 @@ export class Model {
 
   getCurrentProducts() {
     return this.currentProducts;
+  }
+
+  setSortingValue(value) {
+    this.sortingValue = value;
+  }
+
+  getSortingValue() {
+    return this.sortingValue;
   }
 
 }

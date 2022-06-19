@@ -7,6 +7,7 @@ export class Model {
     this.category = null;
 
     this.currentProducts = null;
+    this.previousResults = null;
     this.sortingValue = null;
   }
 
@@ -65,6 +66,14 @@ export class Model {
 
   getSortingValue() {
     return this.sortingValue;
+  }
+
+  setPreviousResults(results) {
+    this.previousResults = results;
+  }
+
+  getPreviousResults() {
+    return this.previousResults;
   }
 
 }

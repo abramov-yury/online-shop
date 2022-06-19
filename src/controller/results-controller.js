@@ -10,6 +10,8 @@ import { ResultsView } from "../view/results-view";
 import { ProductController } from "./product-controller";
 import { InfoController } from "./info-controller";
 
+import { FAVORITES } from "./favorite-controller";
+
 const INFO = require("../template/info.json");
 
 const Mode = {
@@ -66,13 +68,38 @@ export class ResultsController {
       Mediator.disableFilters();
       this.view.getSortingElements().forEach((item) => item.setAttribute("disabled", true));
 
+      this._renderFavorites();
+
       Mode.favorite = true;
     } else {
       Mediator.enableFilters();
       this.view.getSortingElements().forEach((item) => item.removeAttribute("disabled"));
 
+      this.presentProducts(this.model.getPreviousResults());
+
       Mode.favorite = false;
     }
+  }
+
+  _renderFavorites() {
+    const favorites = JSON.parse(localStorage.getItem(FAVORITES));
+    this._cleanResults();
+    this.model.setPreviousResults(this.model.getCurrentProducts());
+
+    if(!favorites || !favorites.length) {
+      this.model.setCurrentProducts([]);
+      this.infoController = new InfoController(this.view.getResultsContainer(), INFO.favourites);
+      this.infoController.initiate();
+      return;
+    }
+
+    const results = [];
+    favorites.forEach(favorite => {
+      results.push(this.model.getAllProducts().find((product) => favorite === product.id));
+    });
+
+    this.model.setCurrentProducts(results);
+    this._renderProducts();
   }
 
   checkPosition() {

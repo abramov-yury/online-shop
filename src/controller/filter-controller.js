@@ -46,10 +46,20 @@ export class FilterController {
 
     this._renderSelect();
     this._renderRangeSlider(this.model.getAllProducts(), 1e5);
+
+    this._updateMediator();
   }
 
   _setHandlers() {
     this.view.setButtonHandler(debounce(this.onButtonClick), 250);
+  }
+
+  _updateMediator() {
+    this.disable = this.disable.bind(this);
+    this.enable = this.enable.bind(this);
+
+    Mediator.disableFilters = this.disable;
+    Mediator.enableFilters = this.enable;
   }
 
   _renderSelect() {
@@ -166,6 +176,28 @@ export class FilterController {
       case (CategoryType.CARS) :
         Mediator.presentResults(filterByCars(this.model.getCars()));
     }
+  }
+
+  disable() {
+    this.view.getElement().querySelectorAll("input").forEach((item) => {
+      item.setAttribute("disabled", true);
+    });
+    this.view.getElement().querySelectorAll("select").forEach((item) => {
+      item.setAttribute("disabled", true);
+    });
+    this.view.getButton().setAttribute("disabled", true);
+    this.rangeController.disable();
+  }
+
+  enable() {
+    this.view.getElement().querySelectorAll("input").forEach((item) => {
+      item.removeAttribute("disabled");
+    });
+    this.view.getElement().querySelectorAll("select").forEach((item) => {
+      item.removeAttribute("disabled");
+    });
+    this.view.getButton().removeAttribute("disabled");
+    this.rangeController.enable();
   }
 
 }

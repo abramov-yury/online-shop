@@ -12,6 +12,10 @@ import { InfoController } from "./info-controller";
 
 const INFO = require("../template/info.json");
 
+const Mode = {
+  favorite: false,
+};
+
 export class ResultsController {
   constructor(container, model, position) {
     this.container = container;
@@ -58,7 +62,17 @@ export class ResultsController {
   onFavoriteButtonClick() {
     this.view.getFavoriteButton().classList.toggle(this.view.cls.favorite.active);
 
-    console.log("on favorite button click");
+    if(!Mode.favorite) {
+      Mediator.disableFilters();
+      this.view.getSortingElements().forEach((item) => item.setAttribute("disabled", true));
+
+      Mode.favorite = true;
+    } else {
+      Mediator.enableFilters();
+      this.view.getSortingElements().forEach((item) => item.removeAttribute("disabled"));
+
+      Mode.favorite = false;
+    }
   }
 
   checkPosition() {

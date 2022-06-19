@@ -1,0 +1,15 @@
+-
+  cls = locals.parent ? `${locals.parent}__favorite favorite` : "favorite";
+  favorite_id = locals.parent ? `favorite-${parent}-${locals.id}` : `favorite-${locals.id}`
+
+  // Имеются 2 модфикатора - "medium" и "large"
+  icon_widht = locals.modifier === "large" ? 33 : 22
+  icon_height = locals.modifier === "large" ? 30 : 20
+  icon_modifier = locals.modifier ? locals.modifier : "medium"
+
+div&attributes({"class": cls})
+  input(class="visually-hidden favorite__checkbox js-favorite__checkbox" type="checkbox" id=favorite_id
+    name=`favorite-product-${locals.id}`)
+  label.favorite__label(for=favorite_id)
+    svg(class=`favorite__icon favorite__icon--${icon_modifier}` width=icon_widht height=icon_height role="presentation" hidden="true")
+      use(href="#heart-icon")

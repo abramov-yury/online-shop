@@ -1,0 +1,30 @@
+.favorite__icon
+  cursor: pointer
+
+.favorite:hover .favorite__icon,
+.favorite__checkbox:focus + .favorite__label > .favorite__icon
+  --sprite-heart-fill: var(--color-light-blue)
+  transition: var(--animation)
+
+.favorite:hover .favorite__icon--medium,
+.favorite__checkbox:focus + .favorite__label > .favorite__icon--medium
+  width: 26.4px
+  height: 24px
+
+  transform: translate(-2.2px, -2px)
+
+.favorite:hover .favorite__icon--large,
+.favorite__checkbox:focus + .favorite__label > .favorite__icon--large
+  width: 37.4px
+  height: 34px
+
+  transform: translate(-2.4px, -2px)
+
+.favorite__checkbox:checked + .favorite__label > .favorite__icon
+  --sprite-heart-stroke: var(--color-light-blue)
+  --sprite-heart-fill: var(--color-main-bg)
+
+.favorite__label
+  display: flex
+  justify-content: center
+  align-items: center

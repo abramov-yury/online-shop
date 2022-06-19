@@ -2,6 +2,7 @@ import { render } from "../helpers/render";
 import { Options } from "../helpers/map";
 
 import { PopupView } from "../view/popup-view";
+import { FavoriteController } from "./favorite-controller";
 
 export class PopupController {
   constructor(container, parameters, position) {
@@ -11,6 +12,8 @@ export class PopupController {
 
     this.view = null;
     this.map = null;
+
+    this.favoriteController = null;
 
     this.onEscDown = this.onEscDown.bind(this);
     this.onDocumentClick = this.onDocumentClick.bind(this);
@@ -22,7 +25,9 @@ export class PopupController {
     this.view = new PopupView(this.parameters);
     this._setHandlers();
     render(this.container, this.view, this.position);
+
     this._renderMap();
+    this._renderFavorite();
   }
 
   _remove() {
@@ -39,6 +44,12 @@ export class PopupController {
 
     document.addEventListener("keydown", this.onEscDown);
     document.addEventListener("click", this.onDocumentClick);
+  }
+
+  _renderFavorite() {
+    const data = {parent: "popup", id: this.parameters.id, modifier: "large"};
+    this.favoriteController = new FavoriteController(this.view.getMainPicture().parentNode, data);
+    this.favoriteController.initiate();
   }
 
   _renderMap() {

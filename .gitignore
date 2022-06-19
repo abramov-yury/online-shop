@@ -11,3 +11,6 @@ Thumbs.db
 *.log*
 *.webpack-temp*
 node_modules/
+
+#Директории проекта
+public/

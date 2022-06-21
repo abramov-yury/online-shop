@@ -4,13 +4,13 @@ const template = require("../template/app.pug");
 const createAppTemplate = (obj) => template(obj);
 
 export class AppView extends AbstractView {
-  constructor(parent) {
+  constructor(parameters) {
     super();
 
-    this.parent = parent;
+    this.parameters = parameters;
   }
 
   getTemplate() {
-    return createAppTemplate({parent: this.parent});
+    return createAppTemplate(this.parameters);
   }
 }

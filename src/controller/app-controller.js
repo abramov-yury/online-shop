@@ -1,4 +1,6 @@
-import { render, RenderPosition } from "../helpers/render";
+import { render } from "../helpers/render";
+
+import { Mediator } from "../helpers/mediator";
 
 import { Model } from "../model/model";
 
@@ -9,9 +11,10 @@ import { FilterController } from "./filter-controller";
 import { ResultsController } from "./results-controller";
 
 export class AppController {
-  constructor(container, parent) {
+  constructor(container, parameters, position) {
     this.container = container;
-    this.parent = parent;
+    this.parameters = parameters;
+    this.position = position;
 
     this.view = null;
     this.model = null;
@@ -26,12 +29,15 @@ export class AppController {
     await this.model.setProducts(url).catch(err => console.log(err));
 
     if(!this.model.getAllProducts()) {
+      Mediator.removePreloader();
+
       this._renderLostPage();
       return;
     }
 
-    this.view = new AppView(this.parent);
-    render(this.container, this.view, RenderPosition.AFTER);
+    this.view = new AppView(this.parameters);
+    Mediator.removePreloader();
+    render(this.container, this.view, this.position);
 
     this._renderFilter();
     this._renderResults();

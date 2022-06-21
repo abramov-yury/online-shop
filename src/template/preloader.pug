@@ -1,0 +1,10 @@
+-
+  name = "preloader"
+  class_name = locals.parent ? `${locals.parent}__${name} ${name} js-${name}` : `${name} js-${name}`
+
+  n = 0
+
+div(class = class_name)
+  while n < 12
+    .preloader__item #{++n}
+

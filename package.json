@@ -1,8 +1,8 @@
 {
-  "name": "webpack",
+  "name": "online-shop",
   "version": "1.0.0",
   "private": true,
-  "description": "Basic configuration of Webpack",
+  "description": "Single Page Application in JavaScript",
   "author:": "",
   "license": "MIT",
   "scripts": {

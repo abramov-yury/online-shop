@@ -1,6 +1,6 @@
 # Сайт объявлений
 
-[Ссылка на сайт](https://abramov-yury.github.io/online-shop/)
+[Посмотреть демо](https://abramov-yury.github.io/online-shop/)
 
 ---
 

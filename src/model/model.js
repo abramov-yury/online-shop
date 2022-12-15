@@ -11,17 +11,21 @@ export class Model {
     this.sortingValue = null;
   }
 
-  async setProducts(url) {
-
-    const response = await fetch(url);
-
-    if(response.ok) {
-      this.products = await response.json();
-      return Array.from(this.products);
-    } else {
-      return response.status;
+  setProducts(url) {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        'X-Master-Key': '$2b$10$fXhUIV39XLHAl6MfESXDBeX4lJaGpFF8BajxmplmnCh4ywBJgEGhi'
+      },
     }
 
+    return fetch(url, options)
+      .then((response) => response.json())
+      .then((result) => {
+        this.products = result.record;
+        return this.products;
+      })
   }
 
   setCategory(category) {

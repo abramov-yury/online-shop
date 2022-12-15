@@ -22,25 +22,30 @@ export class AppController {
     this.pageNotFoundController = null;
     this.filterController = null;
     this.resultsController = null;
+
+    this._successfulRequestHandle = this._successfulRequestHandle.bind(this);
+    this._failedRequestHandle = this._failedRequestHandle.bind(this);
   }
 
-  async initiate(url) {
+  initiate(url) {
     this.model = new Model();
-    await this.model.setProducts(url).catch(err => console.log(err));
+    this.model.setProducts(url)
+      .then(this._successfulRequestHandle)
+      .catch(this._failedRequestHandle)
+  }
 
-    if(!this.model.getAllProducts()) {
-      Mediator.removePreloader();
-
-      this._renderLostPage();
-      return;
-    }
-
+  _successfulRequestHandle() {
     this.view = new AppView(this.parameters);
     Mediator.removePreloader();
     render(this.container, this.view, this.position);
-
     this._renderFilter();
     this._renderResults();
+  }
+
+  _failedRequestHandle(err) {
+    Mediator.removePreloader();
+    this._renderLostPage();
+    console.log(err.message);
   }
 
   _renderLostPage() {
@@ -54,7 +59,7 @@ export class AppController {
   }
 
   _renderResults() {
-    this.resultsContoller = new ResultsController(this.view, this.model);
-    this.resultsContoller.initiate({parent: "app"});
+    this.resultsController = new ResultsController(this.view, this.model);
+    this.resultsController.initiate({parent: "app"});
   }
 }

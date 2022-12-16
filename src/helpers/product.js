@@ -1,4 +1,4 @@
-export const productsImagesPath = "https://raw.githubusercontent.com/abramov-yury/my-assets/main/online-shop/";
+export const productsImagesPath = "https://raw.githubusercontent.com/abramov-yury/online-shop/main/assets/";
 
 export const PRODUCTS_NAVIGATION_LIMIT = 5;
 
